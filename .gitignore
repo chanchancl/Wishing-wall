@@ -2,3 +2,5 @@
 db.sqlite3
 *.pyc
 wishing/wishing/__pycache__/urls.cpython-35.pyc
+*.pyc
+wishing/db.sqlite3

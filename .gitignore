@@ -1,1 +1,4 @@
 卖萌的文档.docx
+db.sqlite3
+*.pyc
+wishing/wishing/__pycache__/urls.cpython-35.pyc

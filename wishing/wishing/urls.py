@@ -19,6 +19,6 @@ from django.contrib import admin
 from wishingwall import views as view
 
 urlpatterns = [
-    url(r'^index/', view.index),
+    url(r'^$', view.index),
     url(r'^admin/', admin.site.urls),
 ]

@@ -11,3 +11,9 @@ def index(request):
 
         return
     return render(request,'index.html')
+    
+def addview(request):
+    return render(request,'add.html')
+    
+def delview(request):
+    return render(request,'del.html')

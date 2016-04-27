@@ -20,5 +20,7 @@ from wishingwall import views as view
 
 urlpatterns = [
     url(r'^$', view.index),
+    url(r'^add/',view.addview),
+    url(r'^del/',view.delview),
     url(r'^admin/', admin.site.urls),
 ]

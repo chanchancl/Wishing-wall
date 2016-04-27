@@ -11,29 +11,62 @@
         body {
           background-color: darkgray
         }
+        /*.container {
+          background-color: darkgray
+        }*/
         </style>
     </head>
         
     <body>
         <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="page-header">
-                <div>
-                <h1>许愿墙 <small>The Wishing Wall</small></h1> 
-                <p>
-                <a href="123" id="add" type="button" class = "btn btn-lg btn-success"><b>许下愿望</b></a>
-                <a href="456" id="del" type="button" class = "btn btn-lg btn-danger"><b>删除愿望</b></a>
-                </p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="page-header">
+                    <div>
+                    <h1>许愿墙 <small>The Wishing Wall</small></h1> 
+                    <p>
+                    <a id="add" type="button" class = "btn btn-lg btn-success" data-toggle="modal" data-target="#addModal">
+                        许下愿望
+                    </a>
+                    <a id="del" type="button" class = "btn btn-lg btn-danger">
+                        删除愿望
+                    </a>
+                    </p>
+                    </div>
                 </div>
+              </div>
+              <div class="col-md-4">
+                <p>can be a picture</p>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <p>can be a picture</p>
-          </div>
-          
-        </div>
-            
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="addModalLabel">许愿</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form name="wishform" action="/" method="post"> {% csrf_token %}
+                        <label for="wishing">Wishing</label>
+                        <textarea name="wishingText" rows="4" class="form-control" id="wishing" required></textarea>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Submit()" >提交</button>
+                    <script>
+                        function Submit(){
+                            x = document.forms["wishform"]
+                            x.submit()
+                        }
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
         <script src="/static/js/jquery-1.12.3.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>

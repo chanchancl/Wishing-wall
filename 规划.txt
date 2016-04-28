@@ -15,3 +15,8 @@
 3.css 和 js 到后面再说
     
 4.先这样
+
+
+想用模态框来 add/del 结果出了点问题。。
+
+database 和 module 有点。。。

@@ -1,44 +1,40 @@
 from django.db import models
+from django.db.models.signals import pre_save,post_save,post_delete
+from django.dispatch import receiver
 
 # Create your models here.
 
 class ServerData(models.Model):
     totalWishing = models.IntegerField()
     
-    
-def GetTotalObj():
-    try:
-        obj = ServerData.objects.get(pk=1)
-    except:
-        obj = ServerData.objects.create(totalWishing=1)
-        obj.totalWishing = 0
-    return obj
-    
-def GetCurrentID():
-    return GetTotalObj().totalWishing
-    
-def ModifyTotal(num=1):
-    obj = GetTotalObj()
-    obj.totalWishing += num
+def AddCurrentID():
+    obj,created = ServerData.objects.get_or_create(pk=1)
+    if created:
+        obj.totalWishing=0
+    ret = obj.totalWishing = obj.totalWishing + 1
     obj.save()
-    return obj.totalWishing
+    return ret
     
 class Wishing(models.Model):
     wID = models.IntegerField()
     wText = models.CharField(max_length=100)
     
-    def create(self,text,*args, **kwargs):
-        id = ModifyTotal()
-        obj = super().create(wID=id,wText=text,*arg,**kwargs)
-        return obj
-        
-    def delete(self, using=None, keep_parents=False):
-        if GetCurrentID() >= 1:
-            ModifyTotal(-1)
-        super().delete()
-        print('-*-*-*-*-*-*-*-delete-*-*-*-*-*-*-*-')
     
     def __str__(self):
         return '%d : %s' %(self.wID,self.wText)
+
+
+@receiver(post_save,sender=Wishing)
+def callback(sender,**kwargs):
+    if kwargs['created']:
+        obj = kwargs['instance']
         
-        
+        oldID = obj.wID
+        obj.wID = AddCurrentID()
+        obj.save()
+        print('modify ID from %d to %d' % (oldID,obj.wID))
+    
+    
+    
+    
+    

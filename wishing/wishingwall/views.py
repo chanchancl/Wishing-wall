@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
 from .models import Wishing
@@ -17,3 +18,9 @@ def addview(request):
     
 def delview(request):
     return render(request,'del.html')
+    
+def test(request):
+    #for key in request.session.keys():
+    #    print(key,' is ',request.session[key])
+    print(request.user)
+    return HttpResponse('1')

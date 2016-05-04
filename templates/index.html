@@ -7,7 +7,7 @@
             <div class="row">
               <div class="col-md-6">
                 <!-- Header -->
-               
+                
                 <div class="page-header" id='pageheader'>
                     <div>
                     <h1 style="color:white">许 愿 墙 <small>The Wishing Wall</small></h1> 
@@ -29,6 +29,18 @@
             <hr style="margin-top:0px"></hr>
             <!-- Page Start -->
             <div class="cow">
+              {%for wishing in wishings %}
+                  <div class="col-sm-6 col-md-4" id="test1">
+                    <div class="thumbnail" >
+                      <div class="caption" style='background-color:#D9EDF7'>
+                        
+                        <h3 class="thumbtext">{{wishing.text}}</h3>
+                        <p class="text-right" style="margin-bottom:0px"><small>ID:{{wishing.id}}</small></p>
+                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+              {% endfor %} 
               <div class="col-sm-6 col-md-4" id="test1">
                 <div class="thumbnail" >
                   <div class="caption" style='background-color:#D9EDF7'>
@@ -39,6 +51,7 @@
                   </div>
                 </div>
               </div>
+              
               <div class="col-sm-6 col-md-4">
                 <div class="thumbnail" >
                   <div class="caption" style='background-color:#D9EDF7'>

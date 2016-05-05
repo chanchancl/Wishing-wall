@@ -32,8 +32,10 @@ def addview(request):
             text = form.cleaned_data['wishingtext']
             if len(text) > 0:
                 from django.utils import timezone
-                obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now())
-                print(obj)
+                #obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now())
+                print(form.fields)
+                print(form.cleaned_data)
+                print(form)
     form = WishingForm()
     return render(request,'add.html',{'form':form})
     

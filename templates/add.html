@@ -9,6 +9,7 @@
         <form action="/add/" method="post">
         {% csrf_token %}
         {{ form }}
+        <textarea name="hello" style="resize:none"></textarea>
         <input type="submit" value="Submit" />
         </form>
         </div>

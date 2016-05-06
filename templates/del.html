@@ -5,7 +5,12 @@
     <body>
         <div class="container">
         <p>删除愿望</p>
-
+        
+        <form action="/del/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit" />
+        </form>
         </div>
         {% include "baseend.html" %}
     </body>

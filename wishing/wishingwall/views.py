@@ -1,14 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
-from datetime import datetime
+from django.utils import timezone
 # Create your views here.
 from .models import Wishing
+from hashlib import md5
+from random import randint
 
 class WishingForm(forms.Form):
     wishingtext = forms.CharField(label='Your Wishing',max_length=254)
+    password = forms.CharField(label='删除咒语',max_length=32)
 
-
+class DelForm(forms.Form):
+    id = forms.IntegerField(label='删除的ID')
+    password = forms.CharField(label='删除咒语',max_length=32)
+    
 def index(request):
     objects = Wishing.objects.order_by('wID').reverse()[:5]
     Content = {}
@@ -30,17 +36,39 @@ def addview(request):
         form = WishingForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data['wishingtext']
+            password = form.cleaned_data['password']
             if len(text) > 0:
-                from django.utils import timezone
-                #obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now())
-                print(form.fields)
+                if len(password) == 0:
+                    password = str(randint(0,100000000000))
+                else:
+                    password = md5(password.encode('gb2312')).hexdigest()
+                obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now(),wPassword=password)
+                #print(form.fields)
                 print(form.cleaned_data)
                 print(form)
     form = WishingForm()
     return render(request,'add.html',{'form':form})
     
 def delview(request):
-    return render(request,'del.html')
+    if request.method == 'POST':
+        form = DelForm(request.POST)
+        if form.is_valid():
+            id = form.cleaned_data['id']
+            password = form.cleaned_data['password']
+            objs = Wishing.objects.filter(wID=id)
+            
+            if objs:
+                delnum = 0
+                md5Pass = md5(password.encode('gb2312')).hexdigest()
+                for obj in objs:
+                    if obj.wPassword == md5Pass:
+                        obj.delete()
+                        delnum += 1
+                        
+            
+            print("Want to del id : ",id,' and password is : ',password)
+    form = DelForm()
+    return render(request,'del.html',{'form':form})
     
 def test(request):
     #for key in request.session.keys():

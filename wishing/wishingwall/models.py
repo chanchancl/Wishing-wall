@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save,post_save,post_delete
 from django.dispatch import receiver
-from django.utils.timezone import *
+from django.utils import timezone
 # Create your models here.
 
 class ServerData(models.Model):
@@ -24,10 +24,12 @@ def AddCurrentID():
 class Wishing(models.Model):
     wID = models.IntegerField()
     wText = models.CharField(max_length=100)
-    wData = models.DateTimeField(now())
+    wData = models.DateTimeField(default=timezone.now)
+    #only save the md5 checksum of the password
+    wPassword = models.CharField(max_length=32,default=0)
     
     def __str__(self):
-        return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%b-%d-%y %H:%M:%S'))
+        return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%y-%m-%d %H:%M:%S'))
 
 
 @receiver(post_save,sender=Wishing)

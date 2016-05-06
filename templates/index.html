@@ -3,30 +3,26 @@
 
 <title>许愿墙</title>
     <body style="background-image:url(/static/image/camouflage.png)">
-        <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                <!-- Header -->
-                
-                <div class="page-header" id='pageheader'>
-                    <div>
-                    <h1 style="color:white">许 愿 墙 <small>The Wishing Wall</small></h1> 
-                    <p>
-                    <a href="/add/" id="add" type="button" class = "btn btn-lg btn-success">
-                        许下愿望
-                    </a>
-                    <a href="/del/" id="del" type="button" class = "btn btn-lg btn-danger">
-                        删除愿望
-                    </a>
-                    </p>
-                    </div>
-                </div>
-              </div> 
-              <!--<div class="col-md-4">
-                <img class="img-responsive" src="/static/image/1.jpg"></img>
-              </div> -->
-            </div>
-            <hr style="margin-top:0px"></hr>
+        <div class="container" style="margin:5%;background-color:#1f1f1f">
+            <!-- Header -->
+             
+             <div class="page-header" id='pageheader'>
+                 <div style="margin:0 7.6%">
+                     <h1 style="color:rgb(187, 187, 187);">许 愿 墙 <small>The Wishing Wall</small></h1> 
+                     <p>
+                     <a href="/add/" id="add" type="button" class = "btn btn-lg btn-primary">
+                         许下愿望
+                     </a>
+                     <a href="/del/" id="del" type="button" class = "btn btn-lg btn-danger">
+                         删除愿望
+                     </a>
+                     </p>
+                 </div>
+             </div>
+           <!--<div class="col-md-4">
+             <img class="img-responsive" src="/static/image/1.jpg"></img>
+           </div> <hr style="margin-top:0px"></hr>-->
+            
             <!-- Page Start -->
             <div class="cow">
               {%for wishing in wishings %}

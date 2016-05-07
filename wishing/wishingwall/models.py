@@ -10,6 +10,7 @@ class ServerData(models.Model):
     def __str__(self):
         return 'Current ID %d' % self.totalWishing
     
+    
 '''
     return the id 1,2,3,4....n
 '''
@@ -21,6 +22,13 @@ def AddCurrentID():
     obj.save()
     return ret
     
+def GetCurrentID():
+    ret=0
+    obj,created = ServerData.objects.get_or_create(pk=1)
+    if not created:
+        ret = obj.totalWishing
+    return ret
+    
 class Wishing(models.Model):
     wID = models.IntegerField()
     wText = models.CharField(max_length=100)
@@ -29,7 +37,8 @@ class Wishing(models.Model):
     wPassword = models.CharField(max_length=32,default=0)
     
     def __str__(self):
-        return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%y-%m-%d %H:%M:%S'))
+        #return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%b-%d-%y %H:%M:%S'))
+        return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%Y-%m-%d %H:%I:%S'))
 
 
 @receiver(post_save,sender=Wishing)

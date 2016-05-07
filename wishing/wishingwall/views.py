@@ -14,18 +14,24 @@ class WishingForm(forms.Form):
 class DelForm(forms.Form):
     id = forms.IntegerField(label='删除的ID')
     password = forms.CharField(label='删除咒语',max_length=32)
+
+
+def GetWishingInfo():
+    objects = Wishing.objects.order_by('wID')
+    Wishings = []
+    for obj in objects:
+        Wishings.append({"id":obj.wID,
+            "text": obj.wText,
+            "date": obj.wData,
+        })
+        
+    return Wishings
+    
     
 def index(request):
-    objects = Wishing.objects.order_by('wID').reverse()[:5]
-    Content = {}
-    wishings = []
-    for obj in objects:
-        wishings.append({"id":obj.wID,
-        "text": obj.wText,
-        "date": obj.wData,
-        })
-    
-    print(wishings)
+    #objects = Wishing.objects.order_by('wID').reverse()[:5]
+    wishings = GetWishingInfo()
+    wishings.reverse()
     Content = {
         'wishings':wishings
     }
@@ -68,7 +74,10 @@ def delview(request):
             
             print("Want to del id : ",id,' and password is : ',password)
     form = DelForm()
-    return render(request,'del.html',{'form':form})
+    
+    wishings = GetWishingInfo().copy()
+    wishings.reverse()
+    return render(request,'del.html',{'form':form,'wishings':wishings})
     
 def test(request):
     #for key in request.session.keys():

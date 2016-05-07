@@ -38,16 +38,34 @@
           </div>
           <div style="margin:15% 5% 0 5%;">
            <hr></hr>
+           <ul class="list-group">
+              {%for wishing in wishings%}
+              <li class="list-group-item">ID {{wishing.id}} : {{wishing.text}} <span class="badge deldate">{{wishing.date}}</span></li>
+              {% endfor %}
+              <li class="list-group-item" >Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+           </ul>
            <p>123333333333</p>
           </div>
           
+        {% include "baseend.html" %}
         </div>
         <style>
+        .deldate{
+            background-color:#74BDE2;
+        }
+        .list-group-item{
+            background-color:#D9EDF7;
+            border-bottom-color:#FFF1DE;
+        }
         label{
             font-size:18px;padding-left:30px;
             padding-left:30px;
         }
         </style>
-        {% include "baseend.html" %}
+        
     </body>
 </html>

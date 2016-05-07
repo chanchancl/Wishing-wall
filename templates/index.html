@@ -24,21 +24,23 @@
            </div> <hr style="margin-top:0px"></hr>-->
             
             <!-- Page Start -->
-            <div class="cow">
+
+            <div class="cow container" style="padding:0 5%;">
+              <div>
               {%for wishing in wishings %}
-                  <div class="col-sm-6 col-md-4" id="test1">
+                  <div class="col-sm-6 col-md-4" >
                     <div class="thumbnail" >
-                      <div class="caption" style='background-color:#D9EDF7'>
+                      <div class="caption">
                         <h3 class="thumbtext">{{wishing.text}}</h3>
                         <p class="text-right" style="margin-bottom:0px"><small>ID:{{wishing.id}}</small></p>
-                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date}}</small></p>
+                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y m j,H:i"}}</small></p>
                       </div>
                     </div>
                   </div>
               {% endfor %} 
-              <div class="col-sm-6 col-md-4" id="test1">
+              <div class="col-sm-6 col-md-4" id="test1" >
                 <div class="thumbnail" >
-                  <div class="caption" style='background-color:#D9EDF7'>
+                  <div class="caption">
                     
                     <h3 class="thumbtext">希望自己永远不要变成我讨厌的人。</h3>
                     <p class="text-right" style="margin-bottom:0px"><small>ID:1</small></p>
@@ -49,7 +51,7 @@
               
               <div class="col-sm-6 col-md-4">
                 <div class="thumbnail" >
-                  <div class="caption" style='background-color:#D9EDF7'>
+                  <div class="caption">
                     
                     <blockquote>希望自己永远不要变成我讨厌的人。<small class="text-right">Ccl </small></blockquote>
                     <p class="text-right" style="margin-bottom:0px"><small>ID:1</small></p>
@@ -58,7 +60,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Test label</h3>
                     <p>...</p>
@@ -67,7 +69,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>...</p>
@@ -76,7 +78,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>反正我是不知道为啥"qqqqqqqqqqqqqqqqqqqq qqqqqqqqqqqqqq qqqqqqqqqqqqwwwwwwwwww wwwwwwwwww wwwwwwww wwww wwwwwwwww wwww wwwwww www wwwwwwwwww wwwwwww"没办法自动换行。。。</p>
@@ -85,7 +87,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>...</p>
@@ -94,7 +96,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>...</p>
@@ -103,7 +105,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>BaseCommand的主要方法有：create_parser run_from_argv  execute  add_arguments  来解析参数的具体含义。等BaseCommmand内部使用OptionParser或CommandParser（使用哪一个取决于这个类的 bool(self.option_list) 的值）</p>
@@ -112,7 +114,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>BaseCommand的主要方法有：create_parser run_from_argv  execute  add_arguments  来解析参数的具体含义。等BaseCommmand内部使用OptionParser或CommandParser（使用哪一个取决于这个类的 bool(self.option_list) 的值）</p>
@@ -121,7 +123,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>BaseCommand的主要方法有：create_parser run_from_argv  execute  add_arguments  来解析参数的具体含义。等BaseCommmand内部使用OptionParser或CommandParser（使用哪一个取决于这个类的 bool(self.option_list) 的值）</p>
@@ -130,7 +132,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>BaseCommand的主要方法有：create_parser run_from_argv  execute  add_arguments  来解析参数的具体含义。等BaseCommmand内部使用OptionParser或CommandParser（使用哪一个取决于这个类的 bool(self.option_list) 的值）</p>
@@ -139,23 +141,25 @@
                 </div>
               </div>
               <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" style='background-color:#D9EDF7'>
+                <div class="thumbnail">
                   <div class="caption">
                     <h3>Thumbnail label</h3>
                     <p>BaseCommand的主要方法有：create_parser run_from_argv  execute  add_arguments  来解析参数的具体含义。等BaseCommmand内部使用OptionParser或CommandParser（使用哪一个取决于这个类的 bool(self.option_list) 的值）</p>
                     
                   </div>
                 </div>
+              </div>
               </div>
             </div>
             
-        </div>
         {% include "baseend.html" %}
+        </div>
+        
         <!--<script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>-->
     </body>
     <style>
     .caption{
-        background-color:#CCFF99;
+        background-color:#D9EDF7;
     }
     .thumbnail{
         #background-color:#CCCCFF;

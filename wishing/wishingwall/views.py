@@ -38,6 +38,7 @@ def index(request):
     return render(request,'index.html',Content)
     
 def addview(request):
+    Add = False
     if request.method == 'POST':
         form = WishingForm(request.POST)
         if form.is_valid():
@@ -49,13 +50,15 @@ def addview(request):
                 else:
                     password = md5(password.encode('gb2312')).hexdigest()
                 obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now(),wPassword=password)
+                Add=True
                 #print(form.fields)
                 print(form.cleaned_data)
                 print(form)
     form = WishingForm()
-    return render(request,'add.html',{'form':form})
+    return render(request,'add.html',{'form':form,'add':Add})
     
 def delview(request):
+    Del = False
     if request.method == 'POST':
         form = DelForm(request.POST)
         if form.is_valid():
@@ -70,14 +73,15 @@ def delview(request):
                     if obj.wPassword == md5Pass:
                         obj.delete()
                         delnum += 1
+                        Del = True
                         
             
             print("Want to del id : ",id,' and password is : ',password)
     form = DelForm()
     
-    wishings = GetWishingInfo().copy()
+    wishings = GetWishingInfo()
     wishings.reverse()
-    return render(request,'del.html',{'form':form,'wishings':wishings})
+    return render(request,'del.html',{'form':form,'wishings':wishings,'del':Del})
     
 def test(request):
     #for key in request.session.keys():

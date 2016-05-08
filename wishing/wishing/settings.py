@@ -39,7 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wishingwall',
+    'debug_toolbar',
 ]
+
+'''
+if DEBUG:  
+    DEBUG_TOOLBAR_CONFIG = {  
+        # Toolbar options  
+        'JQUERY_URL': 'http://cdn.staticfile.org/jquery/1.11.0-rc1/jquery.js',  
+    }  '''
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +59,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.admindocs.middleware.XViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'wishing.urls'

@@ -12,7 +12,7 @@ class WishingForm(forms.Form):
     password = forms.CharField(label='删除咒语',max_length=32)
 
 class DelForm(forms.Form):
-    id = forms.IntegerField(label='删除的ID')
+    wishingid = forms.IntegerField(label='删除的ID')
     password = forms.CharField(label='删除咒语',max_length=32)
 
 
@@ -62,7 +62,7 @@ def delview(request):
     if request.method == 'POST':
         form = DelForm(request.POST)
         if form.is_valid():
-            id = form.cleaned_data['id']
+            id = form.cleaned_data['wishingid']
             password = form.cleaned_data['password']
             objs = Wishing.objects.filter(wID=id)
             

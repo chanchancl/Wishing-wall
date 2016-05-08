@@ -15,12 +15,22 @@ class ServerData(models.Model):
     return the id 1,2,3,4....n
 '''
 def AddCurrentID():
-    obj,created = ServerData.objects.get_or_create(pk=1)
-    if created:
-        obj.totalWishing=0
+    count = ServerData.objects.count()
+    if count == 0:
+        obj = ServerData.objects.create(pk=1,totalWishing=0)
+    else:
+        obj = ServerData.objects.get(pk=1)
     ret = obj.totalWishing = obj.totalWishing + 1
     obj.save()
     return ret
+    
+    '''def AddCurrentID():
+    obj = ServerData.objects.all[0]
+    if not obj:
+        obj = ServerData.objects.create(totalWishing=0)
+    ret = obj.totalWishing = obj.totalWishing + 1
+    obj.save()
+    return ret'''
     
 def GetCurrentID():
     ret=0

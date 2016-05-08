@@ -14,24 +14,31 @@ class WishingForm(forms.Form):
 class DelForm(forms.Form):
     id = forms.IntegerField(label='删除的ID')
     password = forms.CharField(label='删除咒语',max_length=32)
+
+
+def GetWishingInfo():
+    objects = Wishing.objects.order_by('wID')
+    Wishings = []
+    for obj in objects:
+        Wishings.append({"id":obj.wID,
+            "text": obj.wText,
+            "date": obj.wData,
+        })
+        
+    return Wishings
+    
     
 def index(request):
-    objects = Wishing.objects.order_by('wID').reverse()[:5]
-    Content = {}
-    wishings = []
-    for obj in objects:
-        wishings.append({"id":obj.wID,
-        "text": obj.wText,
-        "date": obj.wData,
-        })
-    
-    print(wishings)
+    #objects = Wishing.objects.order_by('wID').reverse()[:5]
+    wishings = GetWishingInfo()
+    wishings.reverse()
     Content = {
         'wishings':wishings
     }
     return render(request,'index.html',Content)
     
 def addview(request):
+    Add = False
     if request.method == 'POST':
         form = WishingForm(request.POST)
         if form.is_valid():
@@ -43,13 +50,15 @@ def addview(request):
                 else:
                     password = md5(password.encode('gb2312')).hexdigest()
                 obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now(),wPassword=password)
+                Add=True
                 #print(form.fields)
                 print(form.cleaned_data)
                 print(form)
     form = WishingForm()
-    return render(request,'add.html',{'form':form})
+    return render(request,'add.html',{'form':form,'add':Add})
     
 def delview(request):
+    Del = False
     if request.method == 'POST':
         form = DelForm(request.POST)
         if form.is_valid():
@@ -64,11 +73,15 @@ def delview(request):
                     if obj.wPassword == md5Pass:
                         obj.delete()
                         delnum += 1
+                        Del = True
                         
             
             print("Want to del id : ",id,' and password is : ',password)
     form = DelForm()
-    return render(request,'del.html',{'form':form})
+    
+    wishings = GetWishingInfo()
+    wishings.reverse()
+    return render(request,'del.html',{'form':form,'wishings':wishings,'del':Del})
     
 def test(request):
     #for key in request.session.keys():

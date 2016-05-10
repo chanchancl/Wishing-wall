@@ -24,36 +24,44 @@
            </div> <hr style="margin-top:0px"></hr>-->
             
             <!-- Page Start -->
-            <div class="cow">
+
+            <div class="cow container" style="padding:0 5%;">
+              <div>
               {%for wishing in wishings %}
-                  <div class="col-sm-6 col-md-4" id="test1">
+                  <div class="col-sm-6 col-md-4" >
                     <div class="thumbnail" >
-                      <div class="caption" style='background-color:#D9EDF7'>
-                        <h3 class="thumbtext">{{wishing.text}}</h3>
+                      <div class="caption">
+                        {% load emoji_tags %}
+                        <h3 class="thumbtext">{{wishing.text|emoji_replace_unicode}}</h3>
                         <p class="text-right" style="margin-bottom:0px"><small>ID:{{wishing.id}}</small></p>
-                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date}}</small></p>
+                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y m j,H:i"}}</small></p>
                       </div>
                     </div>
                   </div>
               {% endfor %} 
-              <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" >
-                  <div class="caption" style='background-color:#D9EDF7'>
-                    <blockquote>希望自己永远不要变成我讨厌的人。<small class="text-right">Ccl </small></blockquote>
-                    <p class="text-right" style="margin-bottom:0px"><small>ID:1</small></p>
-                    <p class="text-right" style="margin-bottom:0px"><small>2016.5.2 21:41</small></p>
+                  <div class="col-sm-6 col-md-4" >
+                    <div class="thumbnail" >
+                      <div class="caption">
+                        <h3 class="thumbtext"><img src="/static/emoji/img/grinning.png" style="width:26.429px"></img></h3>
+                        <p class="text-right" style="margin-bottom:0px"><small></small></p>
+                        <p class="text-right" style="margin-bottom:0px"><small></small></p>
+                      </div>
+                    </div>
                   </div>
-                </div>
               </div>
             </div>
             
-        </div>
         {% include "baseend.html" %}
+        </div>
+        
         <!--<script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>-->
     </body>
     <style>
+    .emoji{
+        width:29.694px
+    }
     .caption{
-        background-color:#CCFF99;
+        background-color:#D9EDF7;
     }
     .thumbnail{
         #background-color:#CCCCFF;

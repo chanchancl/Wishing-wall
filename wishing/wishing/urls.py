@@ -13,15 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
 
 from wishingwall import views as view
 
 urlpatterns = [
     url(r'^$', view.index),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^add/',view.addview),
     url(r'^del/',view.delview),
     url(r'^test/',view.test),
     url(r'^admin/', admin.site.urls),
+    url(r'^emoji/', include('emoji.urls')),
 ]

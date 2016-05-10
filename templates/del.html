@@ -10,12 +10,12 @@
                </div>
             </div>
           <div class="form-horizontal col-sm-7">
-            <form action="/add/" method="post" >
+            <form action="/del/" method="post" >
             {% csrf_token %}
                 <div class="form-group">
                     <label class="col-sm-3 control-label ">愿望ID:</label>
                     <div class="col-sm-7">
-                        <input class="form-control" maxlength="254" name="wishingtext" type="text">
+                        <input class="form-control" maxlength="254" name="wishingid" type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -28,7 +28,9 @@
                     <div class="col-sm-offset-3">
                       <div style="margin:0 3%">
                         <button type="submit" class="btn btn-default">删除愿望</button>
-                        我只是来占位置的
+                        {% if del%}
+                        <del>删除成功</del>  我只是来占位置的
+                        {% endif%}
                       </div>
                     </div>
                 </div>
@@ -38,16 +40,29 @@
           </div>
           <div style="margin:15% 5% 0 5%;">
            <hr></hr>
-           <p>123333333333</p>
+           <ul class="list-group">
+              {%for wishing in wishings%}
+              <li class="list-group-item">ID {{wishing.id}} : {{wishing.text}} <span class="badge deldate">{{wishing.date}}</span></li>
+              {% endfor %}
+           </ul>
+           <!--<p>123333333333 占位置</p>-->
           </div>
           
+        {% include "baseend.html" %}
         </div>
         <style>
+        .deldate{
+            background-color:#74BDE2;
+        }
+        .list-group-item{
+            background-color:#D9EDF7;
+            border-bottom-color:#FFF1DE;
+        }
         label{
             font-size:18px;padding-left:30px;
             padding-left:30px;
         }
         </style>
-        {% include "baseend.html" %}
+        
     </body>
 </html>

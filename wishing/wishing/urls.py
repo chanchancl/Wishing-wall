@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^del/',view.delview),
     url(r'^test/',view.test),
     url(r'^admin/', admin.site.urls),
+    url(r'^emoji/', include('emoji.urls')),
 ]

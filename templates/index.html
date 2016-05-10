@@ -31,13 +31,23 @@
                   <div class="col-sm-6 col-md-4" >
                     <div class="thumbnail" >
                       <div class="caption">
-                        <h3 class="thumbtext">{{wishing.text}}</h3>
+                        {% load emoji_tags %}
+                        <h3 class="thumbtext">{{wishing.text|emoji_replace_unicode}}</h3>
                         <p class="text-right" style="margin-bottom:0px"><small>ID:{{wishing.id}}</small></p>
                         <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y m j,H:i"}}</small></p>
                       </div>
                     </div>
                   </div>
               {% endfor %} 
+                  <div class="col-sm-6 col-md-4" >
+                    <div class="thumbnail" >
+                      <div class="caption">
+                        <h3 class="thumbtext"><img src="/static/emoji/img/grinning.png" style="width:26.429px"></img></h3>
+                        <p class="text-right" style="margin-bottom:0px"><small></small></p>
+                        <p class="text-right" style="margin-bottom:0px"><small></small></p>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
             
@@ -47,6 +57,9 @@
         <!--<script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>-->
     </body>
     <style>
+    .emoji{
+        width:29.694px
+    }
     .caption{
         background-color:#D9EDF7;
     }

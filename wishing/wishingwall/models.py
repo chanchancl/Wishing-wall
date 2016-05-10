@@ -48,7 +48,7 @@ class Wishing(models.Model):
     
     def __str__(self):
         #return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%b-%d-%y %H:%M:%S'))
-        return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%Y-%m-%d %H:%I:%S'))
+        return '%d : %s %s' % (self.wID,self.wText,timezone.localtime(self.wData).strftime('%Y-%m-%d %H:%I:%S'))
 
 
 @receiver(post_save,sender=Wishing)

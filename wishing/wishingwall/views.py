@@ -1,3 +1,4 @@
+# -*- UTF-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
@@ -6,6 +7,8 @@ from django.utils import timezone
 from .models import Wishing
 from hashlib import md5
 from random import randint
+import emoji
+import re
 
 class WishingForm(forms.Form):
     wishingtext = forms.CharField(label='Your Wishing',max_length=254)
@@ -14,12 +17,38 @@ class WishingForm(forms.Form):
 class DelForm(forms.Form):
     wishingid = forms.IntegerField(label='删除的ID')
     password = forms.CharField(label='删除咒语',max_length=32)
-
-
+    
+    
+    
+def EmojiReplace(string):
+    '''
+    放这儿做个纪念吧。。。
+    '''
+    pattern = re.compile(r'(?P<a>:[a-zA-Z0-9-+_ ]+:)')
+    
+    imgTag = '<img src=\"\static\emoji\%s.png\" style=\"width:26.429px\"></img>'
+    
+    def replace(match):
+        print(match.group(0))
+        if not emoji.EMOJI_UNICODE.get(match.group(0)):
+            return match.group(0)
+        text = match.group(0).lstrip(':').rstrip(':')
+        tag = imgTag % text
+        print(tag)
+        return tag
+    return pattern.sub(replace,string)
+    
+    
+    
+    
+    
 def GetWishingInfo():
     objects = Wishing.objects.order_by('wID')
     Wishings = []
     for obj in objects:
+        #text = emoji.demojize(obj.wText)
+        #text = EmojiReplace(text)
+        #Emoji.replace_unicode(replacement_string)
         Wishings.append({"id":obj.wID,
             "text": obj.wText,
             "date": obj.wData,

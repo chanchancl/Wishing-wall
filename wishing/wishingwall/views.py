@@ -7,8 +7,12 @@ from django.utils import timezone
 from .models import Wishing
 from hashlib import md5
 from random import randint
+import logging
 import emoji
 import re
+
+
+logger = logging.getLogger('django.request')
 
 class WishingForm(forms.Form):
     wishingtext = forms.CharField(label='Your Wishing',max_length=254)
@@ -81,7 +85,10 @@ def addview(request):
                     password = str(randint(0,100000000000))
                 else:
                     password = md5(password.encode('gb2312')).hexdigest()
-                obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now(),wPassword=password)
+                try:
+                    obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now(),wPassword=password)
+                except exception as e:
+                    logger.debug(str(e))
                 Add=True
                 #print(form.fields)
                 print(form.cleaned_data)
@@ -118,5 +125,6 @@ def delview(request):
 def test(request):
     #for key in request.session.keys():
     #    print(key,' is ',request.session[key])
+    1/0
     print(request.user)
     return HttpResponse('1')

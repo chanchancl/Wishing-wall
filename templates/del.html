@@ -13,25 +13,25 @@
             <form action="/del/" method="post" >
             {% csrf_token %}
                 <div class="form-group">
-                    <label class="col-sm-3 control-label ">愿望ID:</label>
+                    <label class="col-sm-3 control-label label-text">愿望ID:</label>
                     <div class="col-sm-7">
                         <input class="form-control" maxlength="254" name="wishingid" type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">删除咒语:</label>
+                    <label class="col-sm-3 control-label label-text">删除咒语:</label>
                     <div class="col-sm-7">
                         <input class="form-control" maxlength="32" name="password" type="password">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-3">
-                      <div style="margin:0 3%">
-                        <button type="submit" class="btn btn-default">删除愿望</button>
+
+                        <button type="submit" class="btn btn-block btn-danger">删除愿望</button>
                         {% if del%}
                         <del>删除成功</del>  我只是来占位置的
                         {% endif%}
-                      </div>
+
                     </div>
                 </div>
             </form>

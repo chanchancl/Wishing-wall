@@ -23,6 +23,7 @@ class DelForm(forms.Form):
 def EmojiReplace(string):
     '''
     放这儿做个纪念吧。。。
+    这段代码没啥用了
     '''
     pattern = re.compile(r'(?P<a>:[a-zA-Z0-9-+_ ]+:)')
     
@@ -45,14 +46,16 @@ def EmojiReplace(string):
 def GetWishingInfo():
     objects = Wishing.objects.order_by('wID')
     Wishings = []
-    for obj in objects:
-        #text = emoji.demojize(obj.wText)
-        #text = EmojiReplace(text)
-        #Emoji.replace_unicode(replacement_string)
-        Wishings.append({"id":obj.wID,
-            "text": obj.wText,
-            "date": obj.wData,
-        })
+    
+    if len(objects) != 0:
+        for obj in objects:
+            #text = emoji.demojize(obj.wText)
+            #text = EmojiReplace(text)
+            #Emoji.replace_unicode(replacement_string)
+            Wishings.append({"id":obj.wID,
+                "text": obj.wText,
+                "date": obj.wData,
+            })
         
     return Wishings
     

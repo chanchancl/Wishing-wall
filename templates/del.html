@@ -41,8 +41,9 @@
           <div style="margin:15% 5% 0 5%;">
            <hr></hr>
            <ul class="list-group">
+              {% load emoji_tags %}
               {%for wishing in wishings%}
-              <li class="list-group-item "><span class="badge deldate">{{wishing.date}}</span><div>ID {{wishing.id}} : {{wishing.text}} </div></li>
+              <li class="list-group-item "><span class="badge deldate">{{wishing.date}}</span><div>ID {{wishing.id}} : {{wishing.text|emoji_replace_unicode}} </div></li>
               {% endfor %}
            </ul>
            <!--<p>123333333333 占位置</p>-->

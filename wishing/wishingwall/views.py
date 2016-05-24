@@ -47,7 +47,7 @@ def GetWishingInfo():
     objects = Wishing.objects.order_by('wID')
     Wishings = []
     
-    if len(objects) != 0:
+    if objects:
         for obj in objects:
             #text = emoji.demojize(obj.wText)
             #text = EmojiReplace(text)

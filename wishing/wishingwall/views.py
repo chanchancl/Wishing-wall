@@ -86,13 +86,14 @@ def addview(request):
                 else:
                     password = md5(password.encode('gb2312')).hexdigest()
                 try:
-                    obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now(),wPassword=password)
+                    obj = Wishing.objects.create( wID=1,wText=text,wData=timezone.now(),wPassword=password ) 
                 except exception as e:
                     logger.debug(str(e))
                 Add=True
                 #print(form.fields)
-                print(form.cleaned_data)
-                print(form)
+                #print(form.cleaned_data)
+                #print(form)
+                logger.debug(str(form.cleaned_data))
     form = WishingForm()
     return render(request,'add.html',{'form':form,'add':Add})
     
@@ -115,7 +116,7 @@ def delview(request):
                         Del = True
                         
             
-            print("Want to del id : ",id,' and password is : ',password)
+            logger.debug("Want to del id : ",id,' and password is : ',password)
     form = DelForm()
     
     wishings = GetWishingInfo()

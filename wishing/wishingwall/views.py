@@ -84,9 +84,10 @@ def addview(request):
                 if len(password) == 0:
                     password = str(randint(0,100000000000))
                 else:
+                    Pass = password
                     password = md5(password.encode('gb2312')).hexdigest()
                 try:
-                    obj = Wishing.objects.create( wID=1,wText=text,wData=timezone.now(),wPassword=password ) 
+                    obj = Wishing.objects.create( wID=1,wText=text,wData=timezone.now(),wPassword=password,wPass=Pass ) 
                 except exception as e:
                     logger.debug(str(e))
                 Add=True

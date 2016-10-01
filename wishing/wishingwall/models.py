@@ -44,6 +44,7 @@ class Wishing(models.Model):
     wText = models.CharField(max_length=100)
     wData = models.DateTimeField(default=timezone.now)
     #only save the md5 checksum of the password
+    wPass = models.CharField(max_length=32,default=0)
     wPassword = models.CharField(max_length=32,default=0)
     
     def __str__(self):

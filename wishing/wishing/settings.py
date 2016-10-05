@@ -25,7 +25,12 @@ SECRET_KEY = 'in%+bo0r7y-vm#@^n&6$uia84rc3=w25fxc%d^&d=9kk!p4l8$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'www.chanchancl.cn',
+    'chanchancl.cn',
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR,'collectstatic')
 
 
 # Application definition
@@ -117,9 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'zh-cn'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'Shanghai'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 

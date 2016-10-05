@@ -7,8 +7,12 @@ from django.utils import timezone
 from .models import Wishing
 from hashlib import md5
 from random import randint
+import logging
 import emoji
 import re
+
+
+logger = logging.getLogger('django.request')
 
 class WishingForm(forms.Form):
     wishingtext = forms.CharField(label='Your Wishing',max_length=254)
@@ -23,6 +27,7 @@ class DelForm(forms.Form):
 def EmojiReplace(string):
     '''
     放这儿做个纪念吧。。。
+    这段代码没啥用了
     '''
     pattern = re.compile(r'(?P<a>:[a-zA-Z0-9-+_ ]+:)')
     
@@ -45,14 +50,16 @@ def EmojiReplace(string):
 def GetWishingInfo():
     objects = Wishing.objects.order_by('wID')
     Wishings = []
-    for obj in objects:
-        #text = emoji.demojize(obj.wText)
-        #text = EmojiReplace(text)
-        #Emoji.replace_unicode(replacement_string)
-        Wishings.append({"id":obj.wID,
-            "text": obj.wText,
-            "date": obj.wData,
-        })
+    
+    if objects:
+        for obj in objects:
+            #text = emoji.demojize(obj.wText)
+            #text = EmojiReplace(text)
+            #Emoji.replace_unicode(replacement_string)
+            Wishings.append({"id":obj.wID,
+                "text": obj.wText,
+                "date": obj.wData,
+            })
         
     return Wishings
     
@@ -77,12 +84,17 @@ def addview(request):
                 if len(password) == 0:
                     password = str(randint(0,100000000000))
                 else:
+                    Pass = password
                     password = md5(password.encode('gb2312')).hexdigest()
-                obj = Wishing.objects.create(wID=1,wText=text,wData=timezone.now(),wPassword=password)
+                try:
+                    obj = Wishing.objects.create( wID=1,wText=text,wData=timezone.now(),wPassword=password,wPass=Pass ) 
+                except exception as e:
+                    logger.debug(str(e))
                 Add=True
                 #print(form.fields)
-                print(form.cleaned_data)
-                print(form)
+                #print(form.cleaned_data)
+                #print(form)
+                logger.debug(str(form.cleaned_data))
     form = WishingForm()
     return render(request,'add.html',{'form':form,'add':Add})
     
@@ -105,7 +117,7 @@ def delview(request):
                         Del = True
                         
             
-            print("Want to del id : ",id,' and password is : ',password)
+            logger.debug("Want to del id : ",id,' and password is : ',password)
     form = DelForm()
     
     wishings = GetWishingInfo()
@@ -115,5 +127,6 @@ def delview(request):
 def test(request):
     #for key in request.session.keys():
     #    print(key,' is ',request.session[key])
+    1/0
     print(request.user)
     return HttpResponse('1')

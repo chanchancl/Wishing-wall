@@ -20,3 +20,6 @@
 想用模态框来 add/del 结果出了点问题。。
 
 database 和 module 有点。。。
+
+5.有点像把服务器转成centos，。。。
+web部署在windows下，实在是有点蛋疼。。。

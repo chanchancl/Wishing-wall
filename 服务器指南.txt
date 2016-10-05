@@ -1,0 +1,20 @@
+
+服务器启动流程
+
+nginx
+service nginx start
+
+uwsgi
+uwsgi --ini uwsgi.ini
+
+git fetch
+git pull
+
+
+kill 
+
+
+killall nginx
+killall uwsgi
+
+操作被拒绝时，使用sudo

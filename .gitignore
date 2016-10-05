@@ -1,9 +1,5 @@
-卖萌的文档.docx
-db.sqlite3
-/wishing/wishing/  pycache  /
-/wishing/db.sqlite3
 *.sqlite3
-/static/
 *.pyc
-*.pyc
-wishing/wishingwall/__pycache__/admin.cpython-35.pyc
+/static/js
+/static/fonts
+/static/css

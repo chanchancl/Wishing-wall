@@ -5,7 +5,7 @@
 <title>许愿墙</title>
     <body style="background-image:url({% static 'image/camouflage.png' %})">
     
-        <div class="container" style="margin-top:5%; background-color:#1f1f1f">
+        <div class="container" style="margin-top:5%; ">
             <!-- Header -->
              <div class="page-header" id='pageheader' style='text-align:center;'>
                  <div style="margin:0 7.6%">
@@ -22,8 +22,7 @@
                  </div>
              </div>
             <!-- Page Start -->
-            <div class="cow" style="padding:0 6.5%; font-family:Microsoft Yahei;">
-              <div>
+            <div class="cow container-fluid" style="padding:0 6.5%; font-family:Microsoft Yahei;">
               {%for wishing in wishings %}
                   <div class="col-sm-6 col-md-4" >
                     <div class="thumbnail" >
@@ -31,12 +30,11 @@
                         {% load emoji_tags %}
                         <h3 class="thumbtext">{{wishing.text|emoji_replace_unicode}}</h3>
                         <p class="text-right" style="margin-bottom:0px"><small>ID:{{wishing.id}}</small></p>
-                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y m j,H:i"}}</small></p>
+                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y年m月j日,H:i"}}</small></p>
                       </div>
                     </div>
                   </div>
               {% endfor %} 
-              </div>
             </div>
             
         {% include "baseend.html" %}

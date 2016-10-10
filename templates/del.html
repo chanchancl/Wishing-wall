@@ -3,13 +3,13 @@
 
 <title>还愿</title>
     <body>
-        <div class="container" style="margin-top:5%;background-color:#1d1d1d" >
+        <div name="dContainer" class="container" style="margin-top:5%;background-color:#1d1d1d" >
             <div class="page-header" id='pageheader' style='text-align:center;'>
                <div style="margin:0 7.6%">
                 <h1 style="color:white"><a href="/" title="许 愿 墙" style="color:rgb(187, 187, 187);">许 愿 墙</a></h1> 
                </div>
             </div>
-          <div class="form-horizontal col-sm-11">
+          <div class="form-horizontal col-sm-11"><br />
             <form action="/del/" method="post" >
             {% csrf_token %}
                 <div class="form-group">
@@ -68,6 +68,10 @@
         </style>
         <script>
             $("#myhr").css("width",$("#pageheader").css("width"))
+            $("#myhr").css("border-top-color",$("#dContainer").css("background-color"))
+            $(window).resize(function() {
+                $("#myhr").css("width",$("#pageheader").css("width"))
+            });
         </script>
         
     </body>

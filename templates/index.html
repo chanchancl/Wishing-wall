@@ -4,30 +4,28 @@
 
 <title>许愿墙</title>
     <body style="background-image:url({% static 'image/camouflage.png' %})">
-        <div class="container" style="margin:5%;background-color:#1f1f1f">
+    
+        <div class="container" style="margin-top:5%; ">
             <!-- Header -->
-             
-             <div class="page-header" id='pageheader'>
+             <div class="page-header" id='pageheader' style='text-align:center;'>
                  <div style="margin:0 7.6%">
-                     <h1 style="color:rgb(187, 187, 187);">许 愿 墙 <small>The Wishing Wall</small></h1> 
+                     <h1 style="color:rgb(187, 187, 187);">许 愿 墙</h1> 
+                     <!-- <h2 style="margin-top:0;"><small>The Wishing Wall</small></h2> -->
                      <p>
-                     <a href="/add/" id="add" type="button" class = "btn btn-lg btn-primary">
-                         许下愿望
+                     <a href="/add/" id="add" type="button" class = "btn btn-lg btn-success">
+                         <!--许下愿望-->
                      </a>
                      <a href="/del/" id="del" type="button" class = "btn btn-lg btn-danger">
-                         删除愿望
+                         <!--删除愿望-->
+                     </a>
+                     <a href="/info/" id="info" type="button" class = "btn btn-lg btn-primary">
+                         <!--许下愿望-->
                      </a>
                      </p>
                  </div>
              </div>
-           <!--<div class="col-md-4">
-             <img class="img-responsive" src="/static/image/1.jpg"></img>
-           </div> <hr style="margin-top:0px"></hr>-->
-            
             <!-- Page Start -->
-
-            <div class="cow container" style="padding:0 5%;">
-              <div>
+            <div class="cow container-fluid" style="padding:0 6.5%; font-family:Microsoft Yahei;">
               {%for wishing in wishings %}
                   <div class="col-sm-6 col-md-4" >
                     <div class="thumbnail" >
@@ -35,17 +33,16 @@
                         {% load emoji_tags %}
                         <h3 class="thumbtext">{{wishing.text|emoji_replace_unicode}}</h3>
                         <p class="text-right" style="margin-bottom:0px"><small>ID:{{wishing.id}}</small></p>
-                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y m j,H:i"}}</small></p>
+                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y年m月j日,H:i"}}</small></p>
                       </div>
                     </div>
                   </div>
               {% endfor %} 
-              </div>
             </div>
             
         {% include "baseend.html" %}
         </div>
-        
+   
         <!--<script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>-->
     </body>
     <style>
@@ -53,11 +50,10 @@
         width:29.694px
     }
     .caption{
-        background-color:#D9EDF7;
+        background-color:rgb(187, 187, 187);
     }
     .thumbnail{
-        #background-color:#CCCCFF;
-        background-color:#CCFF99;
+        background-color:rgb(187, 187, 187);
         padding:2px;
     }
     

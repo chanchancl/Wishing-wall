@@ -124,6 +124,9 @@ def delview(request):
     wishings.reverse()
     return render(request,'del.html',{'form':form,'wishings':wishings,'del':Del})
     
+def infoview(request): 
+   return render(request,'info.html')
+   
 def test(request):
     #for key in request.session.keys():
     #    print(key,' is ',request.session[key])

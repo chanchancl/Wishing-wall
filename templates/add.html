@@ -5,9 +5,22 @@
     <body>
         <div class="container" style="margin-top:5%;background-color:#1d1d1d">
             <div class="page-header" id='pageheader' style='text-align:center;'>
-               <div style="margin:0 7.6%">
-                     <h1 style="color:rgb(187, 187, 187);"><a href="/" title="许 愿 墙" style="color:rgb(187, 187, 187);">许 愿 墙</a></h1> 
-                 </div>
+                <div style="margin:0 7.6%">
+                     <h1 style="color:rgb(187, 187, 187);">
+                        <a href="/" title="许 愿 墙" style="color:rgb(187, 187, 187);">许 愿 墙</a>
+                     </h1> 
+                     <p>
+                     <a href="/add/" id="add" type="button" class = "btn btn-lg btn-success">
+                         <!--许下愿望-->
+                     </a>
+                     <a href="/del/" id="del" type="button" class = "btn btn-lg btn-danger">
+                         <!--删除愿望-->
+                     </a>
+                     <a href="/info/" id="info" type="button" class = "btn btn-lg btn-primary">
+                         <!--许下愿望-->
+                     </a>
+                     </p>
+                </div>
             </div>
         
         <form action="/add/" method="post" class="form-horizontal col-sm-11" style='text-align:center;'>

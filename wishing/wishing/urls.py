@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^add/',view.addview),
     url(r'^del/',view.delview),
+    url(r'^info/',view.infoview),
     url(r'^test/',view.test),
     url(r'^admin/', admin.site.urls),
     url(r'^emoji/', include('emoji.urls')),

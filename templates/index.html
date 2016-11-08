@@ -2,6 +2,32 @@
 {% include "basehead.html" %}
 {% load staticfiles %}
 
+<style>
+    h1 {
+        color:rgb(187, 187, 187);
+    }
+    
+    .emoji{
+        width:29.694px
+    }
+    .caption{
+        background-color:rgb(187, 187, 187);
+    }
+    .thumbnail{
+        background-color:rgb(187, 187, 187);
+        padding:2px;
+    }
+    
+    .thumbtext{
+        margin-top:0px
+    }
+    
+    blockquote{
+        border-left-color:gray
+    }
+</style>
+
+
 <title>许愿墙</title>
     <body style="background-image:url({% static 'image/camouflage.png' %})">
     
@@ -9,7 +35,7 @@
             <!-- Header -->
              <div class="page-header" id='pageheader' style='text-align:center;'>
                  <div style="margin:0 7.6%">
-                     <h1 style="color:rgb(187, 187, 187);">许 愿 墙</h1> 
+                     <h1 class="animated pulse"">许 愿 墙</h1> 
                      <!-- <h2 style="margin-top:0;"><small>The Wishing Wall</small></h2> -->
                      <p>
                      <a href="/add/" id="add" type="button" class = "btn btn-lg btn-success">
@@ -44,27 +70,27 @@
         </div>
    
         <!--<script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>-->
+        <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     </body>
-    <style>
-    .emoji{
-        width:29.694px
-    }
-    .caption{
-        background-color:rgb(187, 187, 187);
-    }
-    .thumbnail{
-        background-color:rgb(187, 187, 187);
-        padding:2px;
-    }
-    
-    .thumbtext{
-        margin-top:0px
-    }
-    
-    blockquote{
-        border-left-color:gray
-    }
-    </style>
+    <script>
+    $(document).ready(function(){
+    //Larger thumbnail preview 
+    $("div.thumbnail").hover(function() {
+        $(this).css({'z-index' : '10'});
+        $(this).find('.caption').addClass("hover").stop()
+            .animate({
+                padding: '20px' 
+            }, 200);
+    }, 
+    function() {
+        $(this).css({'z-index' : '0'});
+        $(this).find('.caption').removeClass("hover").stop()
+        .animate({
+            padding: '9px'
+        }, 400);
+    });
+    });
+</script>
     <script>
         //$('.col-sm-6').draggable();  #没啥用啊。。
         console.log($("#pageheader"))

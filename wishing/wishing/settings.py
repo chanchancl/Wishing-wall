@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'www.chanchancl.cn',
     'chanchancl.cn',
+	'127.0.0.1'
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR,'collectstatic')

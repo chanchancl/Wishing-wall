@@ -46,15 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wishingwall',
     'emoji',
-    #'debug_toolbar',
 ]
 
-'''
-if DEBUG:  
-    DEBUG_TOOLBAR_CONFIG = {  
-        # Toolbar options  
-        'JQUERY_URL': 'http://cdn.staticfile.org/jquery/1.11.0-rc1/jquery.js',  
-    }  '''
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

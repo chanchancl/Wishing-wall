@@ -1,9 +1,12 @@
 
 {% include "basehead.html" %}
+{% load staticfiles %}
+
+<link href="{% static 'css/style.css'%}" rel="stylesheet">
 
 <title>Info & Log </title>
-    <body>
-    <div name="dContainer" class="container" style="margin-top:5%;background-color:#1d1d1d;min-height:90%" >
+   <body style="background-image:url({% static 'image/background.jpg' %})">
+    <div name="container" class="container" style="min-height:90%" >
         <div class="page-header" id='pageheader' style='text-align:center;'>
             <div style="margin:0 7.6%">
                 <h1 style="color:rgb(187, 187, 187);">
@@ -24,7 +27,7 @@
                     
                 </div>
         </div>
-        <div class="container" style="padding:0% 10% 0 10%;">
+        <div class="Container" style="padding:0% 10% 0 10%;">
             <h1><p>新年快乐~</p></h>
 			<p>新的一年，要更加努力！</p>
         </div>

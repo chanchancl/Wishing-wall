@@ -1,9 +1,12 @@
 
 {% include "basehead.html" %}
+{% load staticfiles %}
+
+<link href="{% static 'css/style.css'%}" rel="stylesheet">
 
 <title>许愿</title>
-    <body>
-        <div class="container" style="margin-top:5%;background-color:#1d1d1d">
+    <body style="background-image:url({% static 'image/background.jpg' %})">
+        <div class="container" >
             <div class="page-header" id='pageheader' style='text-align:center;'>
                 <div style="margin:0 7.6%">
                      <h1 style="color:rgb(187, 187, 187);">

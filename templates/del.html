@@ -1,5 +1,6 @@
 
 {% include "basehead.html" %}
+{% load staticfiles %}
 
 <style>
     .emoji{
@@ -18,10 +19,11 @@
     }
 </style>
 
+<link href="{% static 'css/style.css'%}" rel="stylesheet">
 
 <title>还愿</title>
-    <body>
-        <div name="container" class="container" style="margin-top:5%;background-color:#1d1d1d" >
+    <body style="background-image:url({% static 'image/background.jpg' %})">
+        <div name="container" class="container">
             <div class="page-header" id='pageheader' style='text-align:center;'>
                <div style="margin:0 7.6%">
                 <h1 style="color:white"><a href="/" title="许 愿 墙" style="color:rgb(187, 187, 187);">许 愿 墙</a></h1> 

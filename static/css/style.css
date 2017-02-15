@@ -1,0 +1,47 @@
+
+body {
+    background-color: darkgray;
+    background-image: url(/static/image/camouflage.png);
+}
+
+.label-text {
+    color: lightskyblue;
+    font-weight: 300px;
+}
+    
+h1 {
+    color: rgb(187,187,187);
+}
+    
+.emoji{
+    width:29.694px
+}
+
+.caption {
+    background-color: lightblue;
+}
+
+.thumbnail{
+    background-color:rgb(147, 217, 217);
+    padding:2px;
+}
+    
+.thumbtext{
+    margin-top:0px
+}
+
+.container{
+    background-color: #1d1d1d;
+    opacity:0.8;
+    border-radius: 50px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+    
+.div{
+    opacity: 1;
+}
+
+blockquote{
+    border-left-color:gray
+}

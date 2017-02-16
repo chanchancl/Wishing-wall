@@ -1,63 +1,60 @@
-
-{% include "basehead.html" %}
-{% load staticfiles %}
-
-    <link href="{% static 'css/style.css'%}" rel="stylesheet">
-    <title>许愿墙</title>
+ {% include "basehead.html" %} {% load staticfiles %}
+<link href="{% static 'css/style.css'%}" rel="stylesheet">
+<title>许愿墙</title>
 </head>
-    <body style="background-image:url({% static 'image/background.jpg' %})">
 
-        <div class="container">
-            <!-- Header -->
-             <div class="page-header" id='pageheader' style='text-align:center;'>
-                 <div style="margin:0 7.6%">
-                     <h1 class="animated pulse"">许 愿 墙</h1> 
+<body style="background-image:url({% static 'image/background.jpg' %})">
+    <div class="container">
+        <!-- Header -->
+        <div class="page-header" id='pageheader' style='text-align:center;'>
+            <div style="margin:0 7.6%">
+                <h1 class="animated pulse" ">许 愿 墙</h1> 
                      
                      <p>
-                     <a href="/add/" id="add" type="button" class = "btn btn-lg btn-success">    
+                     <a href="/add/ " id="add " type="button " class = "btn btn-lg btn-success ">    
                      </a>
-                     <a href="/del/" id="del" type="button" class = "btn btn-lg btn-danger">
+                     <a href="/del/ " id="del " type="button " class = "btn btn-lg btn-danger ">
                      </a>
-                     <a href="/info/" id="info" type="button" class = "btn btn-lg btn-primary">
+                     <a href="/info/ " id="info " type="button " class = "btn btn-lg btn-primary ">
                      </a>
                      </p>
                  </div>
              </div>
 
-            <div class="cow container-fluid" style="padding:0 6.5%; font-family:Microsoft Yahei;">
+            <div class="cow container-fluid " style="padding:0 6.5%; font-family:Microsoft Yahei; ">
               {%for wishing in wishings %}
-                  <div class="col-sm-6 col-md-4" >
-                    <div class="thumbnail" >
-                      <div class="caption">
+                  <div class="col-sm-6 col-md-4 " >
+                    <div class="thumbnail " >
+                      <div class="caption ">
                         {% load emoji_tags %}
-                        <h3 class="thumbtext">{{wishing.text|emoji_replace_unicode}}</h3>
-                        <p class="text-right" style="margin-bottom:0px"><small>ID:{{wishing.id}}</small></p>
-                        <p class="text-right" style="margin-bottom:0px"><small>{{wishing.date|date:"Y年m月j日,H:i"}}</small></p>
+                        <h3 class="thumbtext ">{{wishing.text|emoji_replace_unicode}}</h3>
+                        <p class="text-right " style="margin-bottom:0px "><small>ID:{{wishing.id}}</small></p>
+                        <p class="text-right " style="margin-bottom:0px "><small>{{wishing.date|date:"Y年m月j日,H:i "}}</small></p>
                       </div>
                     </div>
                   </div>
               {% endfor %} 
             </div>
             
-        {% include "baseend.html" %}
+        {% include "baseend.html " %}
         </div>
    
-        <!--<script type="text/javascript" src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js"></script>-->
-        <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+        <!--<script type="text/javascript " src="http://www.w3cschool.cc/try/jeasyui/jquery.easyui.min.js "></script>-->
+        <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css " rel="stylesheet ">
 </body>
     <script>
     $(document).ready(function(){
     //Larger thumbnail preview 
-    $("div.thumbnail").hover(function() {
+    $("div.thumbnail ").hover(function() {
         $(this).css({'z-index' : '10'});
-        $(this).find('.caption').addClass("hover").stop()
+        $(this).find('.caption').addClass("hover ").stop()
             .animate({
                 padding: '20px' 
             }, 200);
     }, 
     function() {
         $(this).css({'z-index' : '0'});
-        $(this).find('.caption').removeClass("hover").stop()
+        $(this).find('.caption').removeClass("hover ").stop()
         .animate({
             padding: '9px'
         }, 400);
@@ -66,8 +63,8 @@
 </script>
     <script>
         //$('.col-sm-6').draggable();  #没啥用啊。。
-        console.log($("#pageheader"))
-        $("#pageheader").css("border-bottom",'0'); //删除 width 属性
+        console.log($("#pageheader "))
+        $("#pageheader ").css("border-bottom ",'0'); //删除 width 属性
         $(function(){
             console.log('Run here?')
         });

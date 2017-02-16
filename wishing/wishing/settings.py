@@ -59,7 +59,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.admindocs.middleware.XViewMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'wishingwall.count.count_middleware',
 ]
 
 ROOT_URLCONF = 'wishing.urls'

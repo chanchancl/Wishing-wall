@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django import forms
 from django.utils import timezone
 # Create your views here.
-from .models import Wishing
+from .models import Wishing, GetVisitCount
 from hashlib import md5
 from random import randint
 import logging
@@ -69,7 +69,8 @@ def index(request):
     wishings = GetWishingInfo()
     wishings.reverse()
     Content = {
-        'wishings':wishings
+        'wishings':wishings,
+        'VisitCount':GetVisitCount(),
     }
     return render(request,'index.html',Content)
     
@@ -82,13 +83,14 @@ def addview(request):
             password = form.cleaned_data['password']
             if len(text) > 0:
                 if len(password) == 0:
-                    password = str(randint(0,100000000000))
+                    Pass = password = str(randint(0,100000000000))
                 else:
                     Pass = password
                     password = md5(password.encode('gb2312')).hexdigest()
                 try:
+					# wPassword 是 MD5， wPass 是密码原文
                     obj = Wishing.objects.create( wID=1,wText=text,wData=timezone.now(),wPassword=password,wPass=Pass ) 
-                except exception as e:
+                except Exception as e:
                     logger.debug(str(e))
                 Add=True
                 #print(form.fields)
@@ -96,7 +98,14 @@ def addview(request):
                 #print(form)
                 logger.debug(str(form.cleaned_data))
     form = WishingForm()
-    return render(request,'add.html',{'form':form,'add':Add})
+
+    Content = {
+        'form':form,
+        'add':Add,
+        'VisitCount':GetVisitCount(),
+    }
+
+    return render(request,'add.html', Content)
     
 def delview(request):
     Del = False
@@ -108,24 +117,32 @@ def delview(request):
             objs = Wishing.objects.filter(wID=id)
             
             if objs:
-                delnum = 0
                 md5Pass = md5(password.encode('gb2312')).hexdigest()
                 for obj in objs:
                     if obj.wPassword == md5Pass:
                         obj.delete()
-                        delnum += 1
                         Del = True
-                        
-            
+                        break
+
             logger.debug("Want to del id : ",id,' and password is : ',password)
     form = DelForm()
     
     wishings = GetWishingInfo()
     wishings.reverse()
-    return render(request,'del.html',{'form':form,'wishings':wishings,'del':Del})
+    Content = {
+        'form':form,
+        'del':Del,
+        'wishings':wishings,
+        'VisitCount':GetVisitCount(),
+    }
+
+    return render(request,'del.html', Content)
     
 def infoview(request): 
-   return render(request,'info.html')
+    Content = {
+        'VisitCount':GetVisitCount()
+    }
+    return render(request, 'info.html', Content)
    
 def test(request):
     #for key in request.session.keys():

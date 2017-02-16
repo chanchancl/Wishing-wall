@@ -7,20 +7,55 @@ from django.utils import timezone
 # Create your models here.
 
 class ServerData(models.Model):
-    totalWishing = models.IntegerField()
-    
+    totalWishing = models.IntegerField(0)
+    totalVisit = models.IntegerField(0)
+
     def __str__(self):
-        return 'Current ID %d' % self.totalWishing
+        return 'Current ID %d\nTotal Visit: %d' % (self.totalWishing, self.totalVisit)
+
+
+class VisitData(models.Model):
+    ipAddress = models.CharField(max_length=32, default='')
+    userAgent = models.CharField(max_length=256, default='')
+    dateTime = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return 'IP: %s, Agent: %s, at Time : %s' % (self.ipAddress, self.userAgent, timezone.localtime(self.dateTime).strftime('%Y-%m-%d %H:%I:%S'))
+
+def AddVisitCount():
+    # 查看是否有记录
+    count = ServerData.objects.count()
+    if count == 0:
+        # 没有记录，创建一个
+        obj = ServerData.objects.create(pk=1,totalWishing=0)
+    else:
+        # 使用已经存在的记录
+        obj = ServerData.objects.get(pk=1)
     
-    
+    obj.totalVisit = obj.totalVisit + 1
+    obj.save()
+
+def GetVisitCount():
+    count = ServerData.objects.count()
+    if count == 0:
+        # 没有记录，创建一个
+        obj = ServerData.objects.create(pk=1,totalWishing=0)
+    else:
+        # 使用已经存在的记录
+        obj = ServerData.objects.get(pk=1)
+    return obj.totalVisit
+
 '''
     return the id 1,2,3,4....n
 '''
 def AddCurrentID():
+    # 查看是否有记录
     count = ServerData.objects.count()
     if count == 0:
+        # 没有记录，创建一个
         obj = ServerData.objects.create(pk=1,totalWishing=0)
     else:
+        # 使用已经存在的记录
         obj = ServerData.objects.get(pk=1)
     ret = obj.totalWishing = obj.totalWishing + 1
     obj.save()

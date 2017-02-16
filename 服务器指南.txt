@@ -7,12 +7,11 @@ service nginx start
 uwsgi
 uwsgi --ini uwsgi.ini
 
-git fetch
+git
 git pull
 
 
 kill 
-
 
 killall nginx
 killall uwsgi

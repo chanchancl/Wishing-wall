@@ -23,7 +23,7 @@ PROJ_DIR = os.path.dirname(BASE_DIR)
 SECRET_KEY = 'in%+bo0r7y-vm#@^n&6$uia84rc3=w25fxc%d^&d=9kk!p4l8$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'www.chanchancl.cn',

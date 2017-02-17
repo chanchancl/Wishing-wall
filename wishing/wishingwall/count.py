@@ -2,14 +2,13 @@
 from django.utils import timezone
 from wishingwall.models import VisitData, AddVisitCount
 
-print('You had install count.')
-
-_DEBUG = True
-
+_DEBUG = False
 
 def debug_log(str):
     if _DEBUG:
         print(str)
+
+debug_log('You had install count.')
 
 '''
 可保存的信息有:
@@ -21,16 +20,18 @@ _MAX_PASSED_DELTA = 3600
 
 
 class count_middleware(object):
+    def __init__(self):
+        self._ipDict = {}
 
     def process_request(self, request):
         debug_log('Where am I?')
-
         return None
 
     def process_response(self, request, response):
         debug_log('process_response')
         debug_log(request)
         debug_log(response)
+        ip = request.META['REMOTE_ADDR']
 
         if 'visit_time' in request.COOKIES:
             # 老访客
@@ -38,7 +39,16 @@ class count_middleware(object):
         else:
             # 新访客
             if  request.path.split('/')[1] != 'admin':
-                Visit(request, response)
+                now = timezone.now()
+                if ip in self._ipDict:
+                    dt = timezone.datetime.strptime(self._ipDict[ip],'%Y-%m-%d-%H-%M')
+                    delta = now - dt
+                    if delta.second > _MAX_PASSED_DELTA:
+                        self._ipDict[ip] = now.strftime('%Y-%m-%d-%H-%M')
+                        Visit(request, response)
+                else:
+                    self._ipDict[ip] = now.strftime('%Y-%m-%d-%H-%M')
+                    Visit(request, response)
 
         return response
 

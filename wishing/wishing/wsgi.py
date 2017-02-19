@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# 这里设置 'DJANGO_SETTINGS_MODULE'，至关重要，影响django加载settings的位置
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "wishing.settings")
 os.environ.setdefault("LANG", "en_us.UTF-8")
 

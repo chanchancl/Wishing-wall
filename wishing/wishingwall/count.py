@@ -12,10 +12,10 @@ debug_log('You had install count.')
 
 '''
 可保存的信息有:
-1.META['REMOTE_ADDR']   访问网站的IP地址
+1.META['REMOTE_ADDR']      访问网站的IP地址
 2.META['HTTP_USER_AGENT']  用户的浏览器
 '''
-# in second
+# in second, 3600s == 1h
 _MAX_PASSED_DELTA = 3600
 
 

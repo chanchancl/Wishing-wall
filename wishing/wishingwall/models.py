@@ -22,52 +22,36 @@ class VisitData(models.Model):
     def __str__(self):
         return 'IP: %s, Agent: %s, at Time : %s' % (self.ipAddress, self.userAgent, timezone.localtime(self.dateTime).strftime('%Y-%m-%d %H:%I:%S'))
 
-def AddVisitCount():
-    # 查看是否有记录
+def GetServerDataObject():
     count = ServerData.objects.count()
     if count == 0:
         # 没有记录，创建一个
-        obj = ServerData.objects.create(pk=1,totalWishing=0)
+        obj = ServerData.objects.create(pk=1,totalWishing=0, totalVisit=0)
     else:
         # 使用已经存在的记录
         obj = ServerData.objects.get(pk=1)
-    
+    return obj
+
+def AddVisitCount():
+    # 查看是否有记录
+    obj = GetServerDataObject()
     obj.totalVisit = obj.totalVisit + 1
     obj.save()
 
 def GetVisitCount():
-    count = ServerData.objects.count()
-    if count == 0:
-        # 没有记录，创建一个
-        obj = ServerData.objects.create(pk=1,totalWishing=0)
-    else:
-        # 使用已经存在的记录
-        obj = ServerData.objects.get(pk=1)
+    obj = GetServerDataObject()
     return obj.totalVisit
 
 '''
     return the id 1,2,3,4....n
 '''
 def AddCurrentID():
-    # 查看是否有记录
-    count = ServerData.objects.count()
-    if count == 0:
-        # 没有记录，创建一个
-        obj = ServerData.objects.create(pk=1,totalWishing=0)
-    else:
-        # 使用已经存在的记录
-        obj = ServerData.objects.get(pk=1)
+    obj = GetServerDataObject()
+
     ret = obj.totalWishing = obj.totalWishing + 1
     obj.save()
     return ret
-    
-    '''def AddCurrentID():
-    obj = ServerData.objects.all[0]
-    if not obj:
-        obj = ServerData.objects.create(totalWishing=0)
-    ret = obj.totalWishing = obj.totalWishing + 1
-    obj.save()
-    return ret'''
+
     
 def GetCurrentID():
     ret=0
@@ -82,22 +66,23 @@ class Wishing(models.Model):
     wData = models.DateTimeField(default=timezone.now)
     #only save the md5 checksum of the password
     wPass = models.CharField(max_length=32,default=0)
+    #wPassword is the raw password
     wPassword = models.CharField(max_length=32,default=0)
     
     def __str__(self):
         #return '%d : %s %s' % (self.wID,self.wText,self.wData.strftime('%b-%d-%y %H:%M:%S'))
         return '%d : %s %s' % (self.wID,self.wText,timezone.localtime(self.wData).strftime('%Y-%m-%d %H:%I:%S'))
 
-
+# 这个callback函数会在一个Wishing对象提交保存后，被调用
 @receiver(post_save,sender=Wishing)
 def callback(sender,**kwargs):
     #确认是create动作，然后把ID改为AddCurrentID
     if kwargs['created']:
-        obj = kwargs['instance']
+        obj = kwargs['instance'] # 获取Wishing对象
         oldID = obj.wID
         obj.wID = AddCurrentID()
         obj.save()
-        print('modify ID from %d to %d' % (oldID,obj.wID))
+        # print('modify ID from %d to %d' % (oldID,obj.wID))
     
     
     

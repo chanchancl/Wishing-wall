@@ -11,7 +11,6 @@ import logging
 import emoji
 import re
 
-
 logger = logging.getLogger('django.request')
 
 class WishingForm(forms.Form):
@@ -23,8 +22,8 @@ class DelForm(forms.Form):
     password = forms.CharField(label='删除咒语',max_length=32)
     
     
-    
-def EmojiReplace(string):
+# never used
+def _EmojiReplace(string):
     '''
     放这儿做个纪念吧。。。
     这段代码没啥用了
@@ -43,10 +42,6 @@ def EmojiReplace(string):
         return tag
     return pattern.sub(replace,string)
     
-    
-    
-    
-    
 def GetWishingInfo():
     objects = Wishing.objects.order_by('wID')
     Wishings = []
@@ -56,7 +51,8 @@ def GetWishingInfo():
             #text = emoji.demojize(obj.wText)
             #text = EmojiReplace(text)
             #Emoji.replace_unicode(replacement_string)
-            Wishings.append({"id":obj.wID,
+            Wishings.append({
+                "id"  : obj.wID,
                 "text": obj.wText,
                 "date": obj.wData,
             })
@@ -69,11 +65,12 @@ def index(request):
     wishings = GetWishingInfo()
     wishings.reverse()
     Content = {
-        'wishings':wishings,
-        'VisitCount':GetVisitCount(),
+        'wishings': wishings,
+        'VisitCount': GetVisitCount(),
     }
     return render(request,'index.html',Content)
-    
+
+# 模板 add.html 的view
 def addview(request):
     Add = False
     if request.method == 'POST':
@@ -106,7 +103,8 @@ def addview(request):
     }
 
     return render(request,'add.html', Content)
-    
+
+# 模板 del.html 的view
 def delview(request):
     Del = False
     if request.method == 'POST':
@@ -137,13 +135,15 @@ def delview(request):
     }
 
     return render(request,'del.html', Content)
-    
+
+# 模板 info.html 的view
 def infoview(request): 
     Content = {
         'VisitCount':GetVisitCount()
     }
     return render(request, 'info.html', Content)
-   
+
+# 用于手动触发异常，获取一些信息
 def test(request):
     #for key in request.session.keys():
     #    print(key,' is ',request.session[key])

@@ -1,6 +1,7 @@
 # Wishing-wall
 
-项目挂在 http://chanchancl.cn
+项目挂在 ~~http://chanchancl.cn~~ 
+已失效，未挂载
 
 
 ## 2017-2-16 18:40:07
